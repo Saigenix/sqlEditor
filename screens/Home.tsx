@@ -67,6 +67,7 @@ const Home = ({ navigation, route }: Props): JSX.Element => {
 
   const moreOps = () => {
     console.log("running");
+
     setModalVisible(true);
   };
 
@@ -79,6 +80,7 @@ const Home = ({ navigation, route }: Props): JSX.Element => {
       Alert.alert("Error!", "Write Your Query!");
       return;
     }
+
     // console.log(text);
     const fnVal = (val: []) => {
       setR({ msg: "", result: val });
@@ -96,6 +98,7 @@ const Home = ({ navigation, route }: Props): JSX.Element => {
       0,
       90
     );
+    // setText("")
   };
 
   return (
