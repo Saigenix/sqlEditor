@@ -5,7 +5,8 @@ import { openDatabase } from "react-native-sqlite-storage";
 
 let db = openDatabase("sai.db")
 
-export const runQuery = async (query: string,fnVal,fnMsg) => {
+
+export const runParsedQuery = async (query: string,fnVal,fnMsg) => {
     console.log("running query: "+query)
     db.transaction(function (txn) {
         //console.log(txn)

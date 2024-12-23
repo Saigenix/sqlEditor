@@ -24,12 +24,13 @@ import BottomSheet from "../components/BottomSheet";
 import { BottomSheetRefProps } from "../components/BottomSheet";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "./../App";
-import { runQuery } from "../DB";
+import { runQuery } from "../util/parser";
+
 type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 
 const Home = ({ navigation, route }: Props): JSX.Element => {
   const [text, setText] = useState("");
-  const [r, setR] = useState({ result: [], msg: "" });
+  const [result, setResult] = useState({ result: [], msg: "" });
   const [modalVisible, setModalVisible] = useState(true);
 
   const ref = useRef<BottomSheetRefProps>(null);
@@ -83,11 +84,11 @@ const Home = ({ navigation, route }: Props): JSX.Element => {
 
     // console.log(text);
     const fnVal = (val: []) => {
-      setR({ msg: "", result: val });
+      setResult({ msg: "", result: val });
       // console.log("r" + r);
     };
     const fnMsg = (val: string) => {
-      setR((pr) => ({ msg: val, result: pr.result }));
+      setResult((pr) => ({ msg: val, result: pr.result }));
       // console.log("r" + r);
     };
     runQuery(text, fnVal, fnMsg);
@@ -148,7 +149,7 @@ const Home = ({ navigation, route }: Props): JSX.Element => {
           </Modal>
           <InputBox text={text} setText={setText} />
           <BottomSheet ref={ref}>
-            <Output output={r} />
+            <Output output={result} />
           </BottomSheet>
         </View>
       </ScrollView>
